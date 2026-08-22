@@ -53,10 +53,16 @@
     }[c]));
   }
 
+  // Returns the single root element for a one-root template (the common
+  // case — callers can addEventListener/appendChild on it directly). If the
+  // markup has multiple top-level siblings, returns the DocumentFragment
+  // instead so every node still makes it into the DOM on append — a plain
+  // firstElementChild here would silently drop everything after the first
+  // sibling, which bit this file more than once before this guard existed.
   function el(html) {
     const t = document.createElement("template");
     t.innerHTML = html.trim();
-    return t.content.firstElementChild;
+    return t.content.children.length > 1 ? t.content : t.content.firstElementChild;
   }
 
   function priorityBadge(p) {
@@ -159,6 +165,7 @@
     triageGrid.appendChild(cardBtn("📍", "Component Locations & Power Path", "Where the fuse block, ECM, and grounding lug actually are", drawComponentLocations));
 
     const symptomGrid = root.querySelector("#symptomGrid");
+    symptomGrid.appendChild(cardBtn("⚠️", "Check for a Warning Light", "Start here first — like a car's check-engine light, no tools needed", drawMil));
     const trees = [
       ["no-crank", "🔌", "Won't Crank"],
       ["cranks-no-start", "🚫", "Cranks, No Start"],
@@ -173,8 +180,6 @@
     symptomGrid.appendChild(cardBtn("🧩", "Drivetrain / Prop", "Gear-down, clutch, thrust", drawDrivetrain));
 
     const refGrid = root.querySelector("#refGrid");
-    refGrid.appendChild(cardBtn("💡", "Read Codes (MIL)", "No scan tool needed", drawMil));
-    refGrid.appendChild(cardBtn("🔢", "DTC Lookup", CONTENT.dtcCodes.length + " codes", drawDtcList));
     refGrid.appendChild(cardBtn("🔌", "Wiring Reference", "ECM J1/J2 pinouts", drawWiring));
     refGrid.appendChild(cardBtn("⚠️", "Known Issues", "Field-reported failures", drawFieldNotesList));
     refGrid.appendChild(cardBtn("📐", "Specs Cheat Sheet", "Voltage, pressure, etc.", drawSpecs));
@@ -290,14 +295,14 @@
     if (branch.action === "dtc") {
       wrap.appendChild(el(`
         <div class="result-card">
-          <h3>Go read the trouble codes</h3>
-          <p>DTCs are stored. Use the MIL blink-code method (or a scan tool if you have one) to read them, then look each one up.</p>
+          <h3>Your motor has a code stored</h3>
+          <p>There's a warning-light code saved in the engine's memory. Read it out (no tools needed, just the ignition key), then look up what it means.</p>
         </div>
       `));
-      const b1 = el(`<button class="pill-btn" type="button">Read codes (MIL method)</button>`);
-      b1.addEventListener("click", () => push({ title: "Read Trouble Codes", draw: drawMil }));
-      const b2 = el(`<button class="pill-btn" type="button">DTC lookup list</button>`);
-      b2.addEventListener("click", () => push({ title: "DTC Lookup", draw: drawDtcList }));
+      const b1 = el(`<button class="pill-btn" type="button">Check for a Warning Light →</button>`);
+      b1.addEventListener("click", () => push({ title: "Check for a Warning Light", draw: drawMil }));
+      const b2 = el(`<button class="pill-btn" type="button">Trouble Code Lookup</button>`);
+      b2.addEventListener("click", () => push({ title: "Trouble Code Lookup", draw: drawDtcList }));
       const row = el(`<div class="action-row"></div>`);
       row.appendChild(b1); row.appendChild(b2);
       wrap.appendChild(row);
@@ -349,6 +354,13 @@
     root.appendChild(el(`
       <div class="detail-block">
         <p>${sourceBadge(d.source)}</p>
+        <p>${esc(d.whatIsThis)}</p>
+      </div>
+    `));
+    root.appendChild(el(`<div class="caution-box"><b>Where is it?</b> ${esc(d.whereIsIt)}</div>`));
+    renderImages(root, d.images);
+    root.appendChild(el(`
+      <div class="detail-block">
         <p>${esc(d.intro)}</p>
         <div class="caution-box"><b>Quick version:</b> ${esc(d.quickVersion)}</div>
         <h3>Before you start</h3>
@@ -358,10 +370,10 @@
         <div class="caution-box"><b>Note:</b> ${esc(d.warning)}</div>
       </div>
     `));
-    renderImages(root, d.images);
+    root.appendChild(el(`<div class="detail-block"><p>${esc(d.vocabDtc)}</p></div>`));
     const row = el(`<div class="action-row"></div>`);
     const btn = el(`<button class="pill-btn" type="button">Now look up your code(s) →</button>`);
-    btn.addEventListener("click", () => push({ title: "DTC Lookup", draw: drawDtcList }));
+    btn.addEventListener("click", () => push({ title: "Trouble Code Lookup", draw: drawDtcList }));
     const btn2 = el(`<button class="pill-btn" type="button">Fixed it? Clear the codes →</button>`);
     btn2.addEventListener("click", () => push({ title: "Clear Codes", draw: drawClearCodes }));
     row.appendChild(btn); row.appendChild(btn2);

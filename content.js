@@ -114,16 +114,19 @@ const CONTENT = {
   // (manual, Section 1)
   // ------------------------------------------------------------------------
   milBlinkProcedure: {
-    title: "Read Trouble Codes With No Scan Tool (MIL Blink Method)",
+    title: "Check for a Warning Light",
+    subtitle: "Start here first if something's wrong — fastest way to find out exactly what, no tools needed.",
     source: "manual",
+    whatIsThis: "Your motor has a small warning light — Briggs calls it the \"MIL\" (Malfunction Indicator Lamp), which is the exact same idea as the check-engine light in a car. When something's wrong, the engine's onboard computer turns that light on and remembers a short code describing the problem. You can make the light blink that code back out to you, using nothing but the ignition key — no scan tool, no laptop, no signal required.",
+    whereIsIt: "Not confirmed against your actual assembled boat yet (you don't have it in hand), but the official wiring diagram shows the MIL wired together with the tachometer and hour meter as one combo connector — that strongly suggests it's part of a gauge on your control handle/console, not mounted on the engine itself like the sensors are. Worth a quick look once you have the boat.",
     images: [
       { file: "images/mil-flash-diagram.png", caption: "The OEM manual's own worked example: this exact blink pattern reads out as P0337." },
       { file: "images/dlc-connector-photo.png", caption: "The Data Link Connector (DLC) — the orange 6-pin plug you'd use IF you ever get access to a scan tool. Not needed for the blink method above." },
     ],
-    intro: "The engine's Malfunction Indicator Lamp (MIL) can flash out stored trouble codes directly — no code reader, no laptop, no signal required. This is the single most useful no-signal diagnostic trick this engine has. Mud Buddy's own owner's manual describes the same trick in simpler terms, quoted below alongside Briggs' more precise version — they agree, just worded differently.",
+    intro: "This is the single most useful no-signal diagnostic trick this engine has. Mud Buddy's own owner's manual describes the same trick in simpler terms, quoted below alongside Briggs' more precise version — they agree, just worded differently.",
     prereqs: [
       "Battery voltage must be above 12V.",
-      "You need to watch the MIL (check light) closely and count flashes.",
+      "You need to watch the warning light closely and count flashes.",
     ],
     quickVersion: "Mud Buddy's version (owner's manual): Turn the key from OFF to RUN 5 times within 5 seconds, ending with the key in the RUN position. The MIL then blinks out each stored code, with \"0\" shown as 10 quick blinks. Code \"061\" marks the end of the list — if that's the only thing that flashes, there are no active faults.",
     steps: [
@@ -135,8 +138,9 @@ const CONTENT = {
       "Write down the 4-digit code as P0-XXX (e.g. 3 blinks, 3 blinks, 7 blinks after the pauses = P0337).",
       "If more than one code is stored, the next code starts flashing after a 3-second pause. Keep writing them down.",
       "When all codes have been shown, the engine flashes \"61\" as an end-of-list marker, then restarts the sequence so you can re-verify.",
-      "IMPORTANT: If \"61\" is the very FIRST thing flashed, there are NO active codes stored — your problem may be intermittent or non-electrical. See the Symptom guides instead of the DTC list.",
+      "IMPORTANT: If \"61\" is the very FIRST thing flashed, there are NO active codes stored — your problem may be intermittent or non-electrical. Use the symptom checklists on the home screen instead.",
     ],
+    vocabDtc: "Each code you just read out is called a DTC — \"Diagnostic Trouble Code.\" It's just a short label like P0230 that points at a specific part or circuit. Now that you've got yours written down, look it up below to see what it means and what to actually do about it.",
     warning: "If you fix something on the water, the light may stay on until the codes are actually cleared — that's normal and doesn't mean the fix didn't work. See Clear Trouble Codes below, or confirm by re-running this read procedure after a fresh start: if the same code doesn't come back, you're good.",
   },
 
