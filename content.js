@@ -423,6 +423,31 @@ const CONTENT = {
       ],
     },
     {
+      id: "fuel-contamination",
+      title: "Check Fuel for Water & Air",
+      source: "field",
+      why: "Water in the fuel and air trapped in the lines cause symptoms that look a lot like a dying engine — power fading while running, stalling, refusing to restart — but the fix has nothing to do with the engine itself. This is a very common, well-documented issue on ethanol gas in marine use, and it happens even on brand-new motors: one owner's brand-new 40 EFI lost power mid-run and died: turned out to be water in the tank, found in about 10 minutes once someone knew to check for it.",
+      tools: ["A clear container (cup, jar, or a clear inline water separator if you have one)", "Basic hand tools for a hose clamp/fitting"],
+      gearNote: [
+        "If you don't already run a water-separating fuel filter with a clear bowl, it's worth adding — auto/marine parts stores sell drainable clear-bowl water separator kits for $15-30, and they let you SEE a water problem building up before it strands you, instead of finding out the hard way.",
+        "Ethanol (the \"E10\" on the pump) is the root cause here — it absorbs moisture out of the air. Non-ethanol/ethanol-free gas avoids this problem entirely if it's available near you, and marine-specific fuel stabilizer with an ethanol treatment added at every fill-up (not just before storage) slows it down a lot.",
+      ],
+      steps: [
+        "Water sinks — it's denser than gasoline, so it collects at the very bottom of whatever it's in (tank, filter bowl, a sample container).",
+        "If you have a clear-bowl water separator: look at it in decent light. Water shows up as a distinct layer or bubble at the bottom, usually with a visible line between it and the gas above. Drain it via the petcock/drain valve if there's any water at all.",
+        "No separator installed: turn the ignition OFF, relieve fuel pressure (see the Fuel Rail Pressure Test caution steps), then disconnect the fuel line at the lowest accessible point — often right at the fuel filter — and catch a small sample in your clear container. Let it sit a minute and look for a layer at the bottom.",
+        "For air in the lines: with the engine running or cranking, look at any clear/translucent sections of fuel hose for bubbles moving through — that's air being pulled into the system instead of solid fuel.",
+        "Running the tank completely dry is the single most common way air gets into an EFI fuel system. The electric pump usually clears this itself — cycle the key ON-OFF a few times to let it re-prime (you should hear it hum each time) before assuming something's actually broken.",
+        "If cycling the key doesn't clear it, or it keeps coming back, look for the actual air leak: a loose fitting, a cracked line, or a connector that isn't fully seated between the tank and the pump.",
+      ],
+      interpret: [
+        "Water found: there's no fixing contaminated fuel — drain the tank and any water that made it past the tank into the lines/filter, replace the fuel filter, and refill with fresh fuel. Don't just top off on top of bad fuel.",
+        "No water, but the filter looks dark, gunked up, or has visible debris: replace it. A clogged filter starves the engine under load even when it flows fine sitting at idle.",
+        "Air confirmed but clears with key-cycling and doesn't return: you were just out of gas or had just refueled — not an ongoing problem.",
+        "Air keeps coming back after priming: there's a real leak somewhere between the tank and the pump — inspect every fitting and hose clamp along that run.",
+      ],
+    },
+    {
       id: "spark-check",
       title: "Spark Check (per cylinder)",
       source: "manual",
@@ -667,7 +692,7 @@ const CONTENT = {
         s2: { text: "Do a careful visual check. NOTE: listen for the fuel pump — it should prime for about 2 seconds when you turn the key ON. If it only primes for about 1/2 second, that points straight at the safety interrupt circuit. Problem found?", yes: { action: "repair:Fix what you found. If the pump only half-primes, check the kill-switch/lanyard and safety interrupt wiring." }, no: { next: "s3" } },
         s3: { text: "Verify there's actually enough fuel in the tank(s). Insufficient fuel?", yes: { action: "repair:Add fuel. (Yes, check this before anything else — it happens to everyone.)" }, no: { next: "s4" } },
         s4: { text: "Check the fuel shut-off valve, if equipped. Is it closed?", yes: { action: "repair:Open the fuel shut-off valve." }, no: { next: "s5" } },
-        s5: { text: "Check fuel tank(s), fuel filter, fuel lines, and fuel pump(s) for dirt, water, or other contamination. Problem found?", yes: { action: "repair:Drain/replace contaminated fuel, replace the fuel filter, clean or replace affected lines. Water in the tank is common after sitting or in humid marsh storage." }, no: { next: "s6" } },
+        s5: { text: "Check fuel tank(s), fuel filter, fuel lines, and fuel pump(s) for dirt, water, or other contamination. Problem found?", linkTest: "fuel-contamination", yes: { action: "repair:Drain/replace contaminated fuel, replace the fuel filter, clean or replace affected lines. Water in the tank is common after sitting or in humid marsh storage." }, no: { next: "s6" } },
         s6: { text: `Run the Fuel Rail Pressure Test. Spec is ${"38–43 psi"}. Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes — weak lift pump, clogged internal filter, bad relay, or a failing high-pressure pump module are the most common causes." }, no: { next: "s7" } },
         s7: { text: "Verify the safety interrupt circuit is NOT active or faulty (kill switch/lanyard fully seated and working). Problem found?", yes: { action: "repair:Reset/reseat/replace the safety switch or lanyard clip." }, no: { next: "s8" } },
         s8: { text: `Check the battery: loose/corroded terminals, voltage ${"12.2–13.5 V"}. Problem found?`, yes: { action: "repair:Clean/tighten terminals, charge or replace the battery." }, no: { next: "s9" } },
@@ -687,7 +712,7 @@ const CONTENT = {
       steps: {
         s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check of wiring, connectors, and fuel lines. Problem found?", yes: { action: "repair:Fix what you found." }, no: { next: "s3" } },
-        s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
+        s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", linkTest: "fuel-contamination", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
         s4: { text: `Run the Fuel Rail Pressure Test (spec ${"38–43 psi"}). Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes." }, no: { next: "s5" } },
         s5: { text: `Check the battery (terminals, voltage ${"12.2–13.5 V"}). Problem found?`, yes: { action: "repair:Clean/tighten terminals, charge or replace the battery." }, no: { next: "s6" } },
         s6: { text: "Check for an intermittent open or short-to-ground in the MAP sensor circuit (wiggle-test the harness while watching a DVOM on the signal wire). Problem found?", yes: { action: "repair:Repair the MAP sensor wiring/connector." }, no: { next: "s7" } },
@@ -707,7 +732,7 @@ const CONTENT = {
       steps: {
         s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check. Problem found?", yes: { action: "repair:Fix what you found." }, no: { next: "s3" } },
-        s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
+        s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", linkTest: "fuel-contamination", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
         s4: { text: `Run the Fuel Rail Pressure Test (spec ${"38–43 psi"}). Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes — a weak pump often shows up as flat power under load before it ever causes a full stall." }, no: { next: "s5" } },
         s5: { text: "Verify crankcase oil is at the correct level. Low?", yes: { action: "repair:Add crankcase oil to spec — low oil can trigger power-limiting protection." }, no: { next: "s6" } },
         s6: { text: "Verify the air filter element is clean and dry. Dirty?", yes: { action: "repair:Replace/clean the air filter element. Marsh dust and spray load these up fast." }, no: { next: "s7" } },
@@ -728,7 +753,7 @@ const CONTENT = {
       steps: {
         s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check. Problem found?", yes: { action: "repair:Fix what you found." }, no: { next: "s3" } },
-        s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
+        s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", linkTest: "fuel-contamination", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
         s4: { text: `Run the Fuel Rail Pressure Test (spec ${"38–43 psi"}). Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes." }, no: { next: "s5" } },
         s5: { text: `Check the battery (terminals, voltage ${"12.2–13.5 V"}). Problem found?`, yes: { action: "repair:Clean/tighten terminals, charge or replace the battery." }, no: { next: "s6" } },
         s6: { text: "Verify crankcase oil is at the correct level. Low?", yes: { action: "repair:Add crankcase oil to spec." }, no: { next: "s7" } },
@@ -760,6 +785,20 @@ const CONTENT = {
       ],
       relatedTests: ["fuel-pressure"],
       relatedDtcs: ["P0230", "P0232", "P0174"],
+    },
+    {
+      id: "fuel-water-contamination",
+      title: "Water & Air in Fuel — the other #1 field complaint",
+      priority: "high",
+      body: [
+        "Just as common as pump problems, and easy to blame on the engine instead: ethanol gas (the standard \"E10\" at most pumps) absorbs moisture out of the air over time. Once it's absorbed all it can hold, the water separates back out — and because water is denser than gas, it sinks to the bottom of the tank, right where the fuel pickup lives. Humid marsh storage and a boat getting bounced around on the water both make this worse.",
+        "This isn't a hypothetical: a documented case of a brand-new 40 EFI motor (same powerhead family) losing power mid-run and dying turned out to be water in the tank — diagnosed in about 10 minutes once someone knew to check for it, on a motor that even had a water separator installed.",
+        "Symptoms overlap heavily with a failing fuel pump: gradual power loss while running, stalling, sputtering, hard/no restart. The difference is there's nothing wrong with the pump or engine at all — the fix is draining contaminated fuel, not chasing electrical faults.",
+        "Air in the lines is a separate but related issue, most often from running the tank dry. The EFI electric pump usually self-primes if you just cycle the key a few times — a real leak (loose fitting, cracked line) is the only case where it doesn't clear on its own.",
+        "Best prevention: keep the tank topped off to reduce condensation room, use ethanol-free fuel where you can get it, and add a marine ethanol fuel treatment at every fill-up — not just before winter storage.",
+      ],
+      relatedTests: ["fuel-contamination"],
+      relatedDtcs: ["P0174"],
     },
     {
       id: "connector-corrosion",
