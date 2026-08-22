@@ -170,6 +170,7 @@
       symptomGrid.appendChild(cardBtn(icon, label, "", () => openTree(id), true));
     });
     symptomGrid.appendChild(cardBtn("🧩", "Drivetrain / Prop", "Gear-down, clutch, thrust", drawDrivetrain));
+    symptomGrid.appendChild(cardBtn("⚙️", "Won't Shift / Trim Issues", "No forward/reverse, drops out of gear — Mud Buddy's own guide", drawRigTroubleshootingList));
 
     const refGrid = root.querySelector("#refGrid");
     refGrid.appendChild(cardBtn("💡", "Read Codes (MIL)", "No scan tool needed", drawMil));
@@ -177,7 +178,6 @@
     refGrid.appendChild(cardBtn("🧪", "Field Tests", "Fuel pressure, spark, ECM", drawFieldTestList));
     refGrid.appendChild(cardBtn("🔌", "Wiring Reference", "ECM J1/J2 pinouts", drawWiring));
     refGrid.appendChild(cardBtn("⚠️", "Known Issues", "Field-reported failures", drawFieldNotesList));
-    refGrid.appendChild(cardBtn("⚙️", "Shifting / Trim Issues", "Mud Buddy's own rig troubleshooting", drawRigTroubleshootingList));
     refGrid.appendChild(cardBtn("📐", "Specs Cheat Sheet", "Voltage, pressure, etc.", drawSpecs));
     refGrid.appendChild(cardBtn("📓", "My Notes", "Your own field notes", drawMyNotes));
     refGrid.appendChild(cardBtn("📖", "Full Manuals (PDF)", "Bundled, works offline", drawManuals));
