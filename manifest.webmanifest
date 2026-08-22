@@ -1,7 +1,7 @@
 {
-  "name": "Mud Motor Doc — Vanguard 40 EFI",
-  "short_name": "Mud Motor",
-  "description": "Offline diagnostic guide for the Briggs & Stratton Vanguard 40 EFI mud motor — covers Mud Buddy HDR 40 EFI and Gator Tail 40 EFI motors.",
+  "name": "Vanguard EFI Mud Motor Diagnostics",
+  "short_name": "Vanguard EFI",
+  "description": "Offline diagnostic guide for the Briggs & Stratton Vanguard 810 EFI 'Big Block' mud motor — covers the 37 EFI and 40 EFI tunes on both Mud Buddy and Gator Tail. Not for the HDR 5400 (different ARKMOS engine).",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
