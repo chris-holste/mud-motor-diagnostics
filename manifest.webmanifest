@@ -1,7 +1,7 @@
 {
   "name": "Mud Motor Doc — Vanguard 40 EFI",
   "short_name": "Mud Motor",
-  "description": "Offline diagnostic guide for the Briggs & Stratton Vanguard 40 EFI mud motor (Mud Buddy HDR 4000R).",
+  "description": "Offline diagnostic guide for the Briggs & Stratton Vanguard 40 EFI mud motor — covers Mud Buddy HDR 40 EFI and Gator Tail 40 EFI motors.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

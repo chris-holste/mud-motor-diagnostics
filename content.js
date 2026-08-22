@@ -1,8 +1,10 @@
 /* ==========================================================================
    Mud Motor Diagnostics — Content Data
    Engine: Briggs & Stratton Vanguard 810 EFI "Big Block" (40 HP)
-           as installed on 2026 Mud Buddy HDR 4000R (Gear Down)
-   Motor:  Same powerhead family used across Mud Buddy / Gator Tail 40 EFI rigs
+           as installed on the 2026 Mud Buddy HDR 40 EFI
+   Motor:  Same 40 EFI powerhead used across Mud Buddy AND Gator Tail rigs —
+           this content applies to both brands regardless of gear-down/direct
+           drive or drive length, since none of that changes the engine.
 
    SOURCING:
    - "manual" tagged content is transcribed from Briggs & Stratton's official
@@ -33,7 +35,7 @@ const CONTENT = {
 
   meta: {
     engine: "Briggs & Stratton Vanguard 810 EFI (Big Block EFI), 40 HP",
-    motor: "2026 Mud Buddy HDR 4000R — Gear Down Edition",
+    motor: "2026 Mud Buddy HDR 40 EFI",
     fuelPressureSpec: "38–43 psi (262–296 kPa) at the fuel rail, key ON",
     batteryVoltageSpec: "12.2–13.5 V DC (engine off) / 12.2–14.5 V DC (key on, at ECM)",
     fuelPumpPrimeSpec: "Pump should prime ~2 seconds when ECM powers up. If it only primes ~0.5 sec, suspect the Safety (interrupt) Circuit.",
@@ -803,7 +805,7 @@ const CONTENT = {
         checks: [
           "Prop condition — check for bent blades, cupped/worn edges, or heavy debris (grass, rope, wire) wrapped at the hub.",
           "Cavitation — running the prop too shallow or with excess ventilation plate exposure. Check drive angle/jack plate height.",
-          "Confirm you're on the right prop pitch for load (the 4000R ships 9-pitch standard, 10/11 available) — an overpitched prop on a heavy load bogs the engine down under the low-power symptom tree instead of showing a drivetrain-specific complaint.",
+          "Confirm you're on the right prop pitch for load (9-pitch typically ships standard, 10/11 available) — an overpitched prop on a heavy load bogs the engine down under the low-power symptom tree instead of showing a drivetrain-specific complaint.",
         ],
       },
       {
@@ -834,5 +836,10 @@ const CONTENT = {
   // ------------------------------------------------------------------------
   // Multi-motor equivalence, for context
   // ------------------------------------------------------------------------
-  contextNote: "This is the same Briggs & Stratton Vanguard 40 EFI 'Big Block' powerhead used across several brands' 40 EFI long-tail mud motors (including Gator Tail), so field-reported issues largely carry across brands even though the drivetrain/housing differs.",
+  contextNote: "Works for Gator Tail 40 EFI motors too: this is the exact same Briggs & Stratton Vanguard 40 EFI 'Big Block' powerhead used in Gator Tail's 40 EFI long-tail mud motors, not just Mud Buddy's. All the engine content (fuel, ignition, sensors, DTCs, ECM wiring) applies directly regardless of brand. Only the drivetrain/housing differs — gear-down vs. direct drive and drive length don't change any of the engine-side troubleshooting either.",
+
+  // ------------------------------------------------------------------------
+  // Legal disclaimer — shown prominently on the home screen.
+  // ------------------------------------------------------------------------
+  disclaimer: "Use this app at your own risk. This is unofficial, community-assembled reference material built from public manuals and field reports — not a substitute for a qualified mechanic. We are not liable for any damage, injury, or loss resulting from following this guidance.",
 };
