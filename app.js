@@ -169,13 +169,12 @@
     trees.forEach(([id, icon, label]) => {
       symptomGrid.appendChild(cardBtn(icon, label, "", () => openTree(id), true));
     });
-    symptomGrid.appendChild(cardBtn("🧩", "Drivetrain / Prop", "Gear-down, clutch, thrust", drawDrivetrain));
     symptomGrid.appendChild(cardBtn("⚙️", "Won't Shift / Trim Issues", "No forward/reverse, drops out of gear — Mud Buddy's own guide", drawRigTroubleshootingList));
+    symptomGrid.appendChild(cardBtn("🧩", "Drivetrain / Prop", "Gear-down, clutch, thrust", drawDrivetrain));
 
     const refGrid = root.querySelector("#refGrid");
     refGrid.appendChild(cardBtn("💡", "Read Codes (MIL)", "No scan tool needed", drawMil));
     refGrid.appendChild(cardBtn("🔢", "DTC Lookup", CONTENT.dtcCodes.length + " codes", drawDtcList));
-    refGrid.appendChild(cardBtn("🧪", "Field Tests", "Fuel pressure, spark, ECM", drawFieldTestList));
     refGrid.appendChild(cardBtn("🔌", "Wiring Reference", "ECM J1/J2 pinouts", drawWiring));
     refGrid.appendChild(cardBtn("⚠️", "Known Issues", "Field-reported failures", drawFieldNotesList));
     refGrid.appendChild(cardBtn("📐", "Specs Cheat Sheet", "Voltage, pressure, etc.", drawSpecs));
@@ -463,6 +462,16 @@
         <p>${esc(d.note)}</p>
       </div>
     `));
+    if (d.relatedTest) {
+      const t = CONTENT.fieldTests.find((x) => x.id === d.relatedTest);
+      if (t) {
+        const box = el(`<div class="detail-block"><h3>Run this test</h3></div>`);
+        const b = el(`<button class="list-item" type="button"><div class="li-title">${esc(t.title)}</div></button>`);
+        b.addEventListener("click", () => push({ title: t.title, draw: (r) => drawFieldTestDetail(r, t) }));
+        box.appendChild(b);
+        root.appendChild(box);
+      }
+    }
     const related = CONTENT.fieldNotes.filter((fn) => fn.relatedDtcs.includes(d.code));
     if (related.length) {
       const box = el(`<div class="detail-block"><h3>Related field notes</h3></div>`);
@@ -482,21 +491,9 @@
   }
 
   // ==========================================================================
-  // FIELD TESTS
+  // FIELD TESTS (no standalone list — reached via decision-tree steps,
+  // Electrical Triage, and DTC pages, so there's no single index page)
   // ==========================================================================
-  function drawFieldTestList(root) {
-    CONTENT.fieldTests.forEach((t) => {
-      const item = el(`
-        <button class="list-item" type="button">
-          <div class="li-title">${esc(t.title)} ${sourceBadge(t.source)}</div>
-          <div class="li-sub">${esc(t.why)}</div>
-        </button>
-      `);
-      item.addEventListener("click", () => push({ title: t.title, draw: (r) => drawFieldTestDetail(r, t) }));
-      root.appendChild(item);
-    });
-  }
-
   function drawFieldTestDetail(root, t) {
     root.appendChild(el(`
       <div class="detail-block">
