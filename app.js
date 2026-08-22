@@ -349,6 +349,16 @@
   // ==========================================================================
   // MIL BLINK PROCEDURE
   // ==========================================================================
+  // Full-width orange CTA to the trouble-code lookup — used twice on the
+  // Check for a Warning Light page (once early, once right after the steps)
+  // since that page is long and the single most important action on it
+  // shouldn't depend on how far someone scrolls.
+  function lookupCodeCta() {
+    const btn = el(`<button class="big-btn yes" type="button" style="width:100%; margin-bottom:14px;">Now look up your code(s) →</button>`);
+    btn.addEventListener("click", () => push({ title: "Trouble Code Lookup", draw: drawDtcList }));
+    return btn;
+  }
+
   function drawMil(root) {
     const d = CONTENT.milBlinkProcedure;
     root.appendChild(el(`
@@ -362,6 +372,12 @@
       <div class="detail-block">
         <p>${esc(d.intro)}</p>
         <div class="caution-box"><b>Quick version:</b> ${esc(d.quickVersion)}</div>
+      </div>
+    `));
+    root.appendChild(el(`<p class="footer-note">Already have a code from a previous read? Skip straight to the lookup:</p>`));
+    root.appendChild(lookupCodeCta());
+    root.appendChild(el(`
+      <div class="detail-block">
         <h3>Before you start</h3>
         <ul>${d.prereqs.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>
         <h3>Steps (detailed)</h3>
@@ -377,9 +393,7 @@
     // immediately after writing the code down — not buried under everything
     // else on the page.
     root.appendChild(el(`<div class="detail-block"><p>${esc(d.vocabDtc)}</p></div>`));
-    const ctaBtn = el(`<button class="big-btn yes" type="button" style="width:100%; margin-bottom:14px;">Now look up your code(s) →</button>`);
-    ctaBtn.addEventListener("click", () => push({ title: "Trouble Code Lookup", draw: drawDtcList }));
-    root.appendChild(ctaBtn);
+    root.appendChild(lookupCodeCta());
 
     // Secondary/reference material below the main action.
     renderImages(root, d.images.filter((i) => i.file.includes("dlc-connector")));
