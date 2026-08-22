@@ -140,7 +140,7 @@
         <p class="home-lead">${esc(CONTENT.meta.motor)} &middot; ${esc(CONTENT.meta.engine)}<br>Also covers Gator Tail 40 EFI motors — same powerhead.</p>
         <div class="caution-box"><b>Use at your own risk:</b> ${esc(CONTENT.disclaimer.replace(/^Use this app at your own risk\.\s*/, ""))}</div>
 
-        <div class="section-label">Start here — most faults are electrical</div>
+        <div class="section-label">Start here — most faults are electrical or fuel</div>
         <div class="card-grid single" id="triageGrid"></div>
 
         <div class="section-label">Diagnose a problem</div>
@@ -162,6 +162,7 @@
     const triageGrid = root.querySelector("#triageGrid");
     triageGrid.appendChild(cardBtn("🔋", "How to Use a Multimeter", "Start here if you've never held one before", drawMultimeterBasics));
     triageGrid.appendChild(cardBtn("⚡", "5-Minute Electrical Triage", "Fuses → relay → grounds → connectors, fastest path first", drawElectricalTriage));
+    triageGrid.appendChild(cardBtn("⛽", "Fuel System Quick Check", "Water, filter, air, pressure, pump — just as common as electrical", drawFuelTriage));
     triageGrid.appendChild(cardBtn("📍", "Component Locations & Power Path", "Where the fuse block, ECM, and grounding lug actually are", drawComponentLocations));
 
     const symptomGrid = root.querySelector("#symptomGrid");
@@ -551,10 +552,11 @@
   }
 
   // ==========================================================================
-  // 5-MINUTE ELECTRICAL TRIAGE
+  // TRIAGE LISTS — shared renderer for any ordered "check these things in
+  // this order" content (electricalTriage, fuelTriage, ...). Each item can
+  // optionally link to a field test and/or a DIY tool.
   // ==========================================================================
-  function drawElectricalTriage(root) {
-    const d = CONTENT.electricalTriage;
+  function drawTriageList(root, d) {
     root.appendChild(el(`<p class="home-lead">${esc(d.intro)} ${sourceBadge(d.source)}</p>`));
     d.order.forEach((item) => {
       const block = el(`
@@ -579,9 +581,19 @@
           block.appendChild(b);
         }
       }
+      if (item.relatedNote) {
+        const fn = CONTENT.fieldNotes.find((x) => x.id === item.relatedNote);
+        if (fn) {
+          const b = el(`<button class="pill-btn" type="button">⚠️ ${esc(fn.title)}</button>`);
+          b.addEventListener("click", () => push({ title: fn.title, draw: (r) => drawFieldNoteDetail(r, fn) }));
+          block.appendChild(b);
+        }
+      }
       root.appendChild(block);
     });
   }
+  function drawElectricalTriage(root) { drawTriageList(root, CONTENT.electricalTriage); }
+  function drawFuelTriage(root) { drawTriageList(root, CONTENT.fuelTriage); }
 
   // ==========================================================================
   // DIY TEST TOOLS

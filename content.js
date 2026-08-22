@@ -512,6 +512,56 @@ const CONTENT = {
   },
 
   // ------------------------------------------------------------------------
+  // Fuel System Quick Check — the fuel-side counterpart to Electrical
+  // Triage. Water in the tank and a weak/failing fuel pump are reported as
+  // often as anything electrical on this powerhead family, but previously
+  // had no fast path — both were buried 3+ questions deep inside individual
+  // symptom trees. This surfaces both in one ordered pass.
+  // ------------------------------------------------------------------------
+  fuelTriage: {
+    title: "Fuel System Quick Check",
+    source: "field",
+    intro: "Water in the tank and a weak fuel pump are reported just as often as anything electrical on this powerhead family — and both mimic a dying engine closely enough to send you chasing the wrong problem. Run this order before you assume it's an engine fault. Nothing here needs more than a multimeter, a fuel pressure gauge, and a clear container.",
+    order: [
+      {
+        title: "1. Fuel level & shutoff valve",
+        detail: "Confirm there's actually enough fuel, and that the shutoff valve (if your setup has one) is open. Check this before anything else — it happens to everyone.",
+      },
+      {
+        title: "2. Water & contamination",
+        detail: "The single most common fuel complaint on this engine family, including on brand-new motors. Ethanol gas absorbs moisture until it separates back out — water sinks to the bottom of the tank, right where the pickup lives. Check a clear-bowl separator or pull a sample.",
+        relatedTest: "fuel-contamination",
+        relatedNote: "fuel-water-contamination",
+      },
+      {
+        title: "3. Fuel filter condition",
+        detail: "Pull it and look. Dark, gunked up, or visible debris means replace it — a clogged filter can flow fine at idle and still starve the engine under load.",
+      },
+      {
+        title: "4. Air in the lines",
+        detail: "Most common after running the tank dry. Cycle the ignition key a few times first — the electric pump usually self-primes and clears it on its own. If it keeps coming back, there's a real leak (loose fitting, cracked line) to find, not just an empty-tank hiccup.",
+        relatedTest: "fuel-contamination",
+      },
+      {
+        title: "5. Fuel rail pressure",
+        detail: "Confirms whether the whole delivery system — tank to filter to pump to rail — is actually making the 38-43 psi spec. This is the test that tells you definitively whether fuel delivery is fine or not.",
+        relatedTest: "fuel-pressure",
+        relatedNote: "fuel-pump-family",
+      },
+      {
+        title: "6. Fuel pump relay",
+        detail: "Cheap and failure-prone. Swap in a spare of the same type — if that fixes it, you're done. See Relay Swap & Bench Test if you don't have a spare on hand.",
+        relatedDiy: "relay-swap-test",
+      },
+      {
+        title: "7. Bypass-test the fuel pump directly",
+        detail: "Still not sure if it's the pump itself or the wiring/relay feeding it? Power the pump module directly from the battery with a fused jumper wire. Runs strong on direct power → the pump's fine, the fault is upstream.",
+        relatedDiy: "fused-jumper",
+      },
+    ],
+  },
+
+  // ------------------------------------------------------------------------
   // DIY diagnostic tools — build/use guides for the physical tools this
   // engine's electrical faults actually call for. "field"-sourced practical
   // technique, not OEM procedure.
