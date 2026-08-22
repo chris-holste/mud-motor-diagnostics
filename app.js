@@ -358,7 +358,6 @@
       </div>
     `));
     root.appendChild(el(`<div class="caution-box"><b>Where is it?</b> ${esc(d.whereIsIt)}</div>`));
-    renderImages(root, d.images);
     root.appendChild(el(`
       <div class="detail-block">
         <p>${esc(d.intro)}</p>
@@ -370,13 +369,24 @@
         <div class="caution-box"><b>Note:</b> ${esc(d.warning)}</div>
       </div>
     `));
+    // Worked example goes right where it's relevant — after the counting steps.
+    renderImages(root, d.images.filter((i) => i.file.includes("mil-flash")));
+
+    // The main call to action: this is the whole point of the page, so it
+    // gets a full-width primary button right where you'd actually need it —
+    // immediately after writing the code down — not buried under everything
+    // else on the page.
     root.appendChild(el(`<div class="detail-block"><p>${esc(d.vocabDtc)}</p></div>`));
+    const ctaBtn = el(`<button class="big-btn yes" type="button" style="width:100%; margin-bottom:14px;">Now look up your code(s) →</button>`);
+    ctaBtn.addEventListener("click", () => push({ title: "Trouble Code Lookup", draw: drawDtcList }));
+    root.appendChild(ctaBtn);
+
+    // Secondary/reference material below the main action.
+    renderImages(root, d.images.filter((i) => i.file.includes("dlc-connector")));
     const row = el(`<div class="action-row"></div>`);
-    const btn = el(`<button class="pill-btn" type="button">Now look up your code(s) →</button>`);
-    btn.addEventListener("click", () => push({ title: "Trouble Code Lookup", draw: drawDtcList }));
     const btn2 = el(`<button class="pill-btn" type="button">Fixed it? Clear the codes →</button>`);
     btn2.addEventListener("click", () => push({ title: "Clear Codes", draw: drawClearCodes }));
-    row.appendChild(btn); row.appendChild(btn2);
+    row.appendChild(btn2);
     root.appendChild(row);
   }
 
