@@ -793,7 +793,7 @@ const CONTENT = {
   // meant to be filled in with your own field experience via My Notes.
   // ------------------------------------------------------------------------
   drivetrain: {
-    intro: "The Briggs EFI manual only covers the engine (powerhead). The gear-down drive, clutch, and prop are Mud Buddy's own mechanical design. The notes below are general surface-drive/gear-down mud motor knowledge, not an OEM Mud Buddy procedure — use the My Notes tab to build this section out with what you actually learn on the water.",
+    intro: "The Briggs EFI manual only covers the engine (powerhead). The gear-down drive, clutch, and prop are Mud Buddy's own mechanical design. The notes below are general surface-drive/gear-down mud motor knowledge, not an OEM Mud Buddy procedure.",
     topics: [
       {
         title: "Engine runs fine, but little or no thrust / prop doesn't spin",
