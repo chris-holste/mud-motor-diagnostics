@@ -808,7 +808,8 @@ const CONTENT = {
         checks: [
           "Prop condition — check for bent blades, cupped/worn edges, or heavy debris (grass, rope, wire) wrapped at the hub.",
           "Cavitation — running the prop too shallow or with excess ventilation plate exposure. Check drive angle/jack plate height.",
-          "Confirm you're on the right prop pitch for load (9-pitch typically ships standard, 10/11 available) — an overpitched prop on a heavy load bogs the engine down under the low-power symptom tree instead of showing a drivetrain-specific complaint.",
+          "Confirm you're on the right prop pitch for load — an overpitched prop on a heavy load bogs the engine down, and that shows up looking exactly like a low-power engine problem instead of the prop mismatch it actually is.",
+          "What pitch actually does: it's the distance the prop would travel forward in one full rotation if it were driving through a solid, like a screw thread — measured in inches. Mud props typically run 9 to 12 pitch. Lower pitch = less distance per rotation = more torque and pulling power, better for heavy loads and thick grass/mud, but a lower top speed. Higher pitch = more distance per rotation = higher potential top speed, but it needs more power/RPM to turn under load. If the engine seems to lack power only when the boat's loaded down (but revs fine light or empty), suspect the prop pitch before assuming it's an engine problem.",
         ],
       },
       {
