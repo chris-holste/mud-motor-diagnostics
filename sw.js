@@ -1,6 +1,6 @@
 /* Cache-first service worker — this app must work with zero signal. */
 
-const CACHE_VERSION = "mud-motor-doc-v24";
+const CACHE_VERSION = "mud-motor-doc-v25";
 
 // Core app shell — small, must always succeed or the app itself is broken.
 const CORE_URLS = [

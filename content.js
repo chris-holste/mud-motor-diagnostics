@@ -9,10 +9,6 @@
    - 37 EFI and 40 EFI are the SAME "Vanguard 810 EFI Big Block EFI" engine —
      just different horsepower tunes of the identical block/ECM/DTC set.
      Everything in this app applies to both.
-   - The HDR 5400/5000 is NOT covered — it runs a different manufacturer's
-     engine entirely (ARKMOS, ~50 HP), not a modded Vanguard. Different ECU,
-     different DTCs, different wiring. Do not use this app's codes/wiring on
-     a 5400/5000.
 
    SOURCING:
    - "manual" tagged content is transcribed from Briggs & Stratton's official
@@ -43,8 +39,6 @@ const CONTENT = {
 
   meta: {
     engine: "Briggs & Stratton Vanguard 810 EFI \"Big Block\" — 37 & 40 EFI tunes",
-    motor: "Mud Buddy HDR or Gator Tail, any drive/gear configuration",
-    coverageNote: "Not for the HDR 5400/5000 — different engine (ARKMOS, ~50 HP), not a modded Vanguard.",
     fuelPressureSpec: "38–43 psi (262–296 kPa) at the fuel rail, key ON",
     batteryVoltageSpec: "12.2–13.5 V DC (engine off) / 12.2–14.5 V DC (key on, at ECM)",
     fuelPumpPrimeSpec: "Pump should prime ~2 seconds when ECM powers up. If it only primes ~0.5 sec, suspect the Safety (interrupt) Circuit.",
@@ -938,7 +932,7 @@ const CONTENT = {
   // ------------------------------------------------------------------------
   // Multi-motor equivalence, for context
   // ------------------------------------------------------------------------
-  contextNote: "Works for Gator Tail 40 EFI motors too: this is the exact same Briggs & Stratton Vanguard 810 EFI 'Big Block' powerhead used in Gator Tail's 40 EFI long-tail mud motors, not just Mud Buddy's. All the engine content (fuel, ignition, sensors, DTCs, ECM wiring) applies directly regardless of brand. Only the drivetrain/housing differs — gear-down vs. direct drive and drive length don't change any of the engine-side troubleshooting either. Also confirmed to cover the 37 EFI tune of this same engine — checked both official manuals side by side, and they document the identical DTC list, model numbers, and ECM pinouts, just for a different horsepower calibration of the same block. One important exception: the Mud Buddy HDR 5400/5000 is NOT covered here — it runs a completely different engine from a different manufacturer (ARKMOS, roughly 50 HP), not a modded Vanguard. Different ECU, different trouble codes, different wiring. Don't use this app's codes or pinouts on a 5400/5000.",
+  contextNote: "Works for Gator Tail 40 EFI motors too: this is the exact same Briggs & Stratton Vanguard 810 EFI 'Big Block' powerhead used in Gator Tail's 40 EFI long-tail mud motors, not just Mud Buddy's. All the engine content (fuel, ignition, sensors, DTCs, ECM wiring) applies directly regardless of brand. Only the drivetrain/housing differs — gear-down vs. direct drive and drive length don't change any of the engine-side troubleshooting either. Also confirmed to cover the 37 EFI tune of this same engine — checked both official manuals side by side, and they document the identical DTC list, model numbers, and ECM pinouts, just for a different horsepower calibration of the same block.",
 
   // ------------------------------------------------------------------------
   // Legal disclaimer — shown prominently on the home screen.

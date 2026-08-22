@@ -137,7 +137,7 @@
   function drawHome(root) {
     root.appendChild(el(`
       <div>
-        <p class="home-lead">${esc(CONTENT.meta.engine)}<br>${esc(CONTENT.meta.motor)}<br>${esc(CONTENT.meta.coverageNote)}</p>
+        <p class="home-lead">${esc(CONTENT.meta.engine)}</p>
         <div class="caution-box"><b>Use at your own risk:</b> ${esc(CONTENT.disclaimer.replace(/^Use this app at your own risk\.\s*/, ""))}</div>
 
         <div class="section-label">Start here — most faults are electrical or fuel</div>
