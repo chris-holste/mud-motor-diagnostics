@@ -367,7 +367,6 @@
         <p>${esc(d.whatIsThis)}</p>
       </div>
     `));
-    root.appendChild(el(`<div class="caution-box"><b>Where is it?</b> ${esc(d.whereIsIt)}</div>`));
     root.appendChild(el(`
       <div class="detail-block">
         <p>${esc(d.intro)}</p>

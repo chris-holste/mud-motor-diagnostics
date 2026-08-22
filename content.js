@@ -118,7 +118,6 @@ const CONTENT = {
     subtitle: "Start here first if something's wrong — fastest way to find out exactly what, no tools needed.",
     source: "manual",
     whatIsThis: "Your motor has a small warning light — Briggs calls it the \"MIL\" (Malfunction Indicator Lamp), which is the exact same idea as the check-engine light in a car. When something's wrong, the engine's onboard computer turns that light on and remembers a short code describing the problem. You can make the light blink that code back out to you, using nothing but the ignition key — no scan tool, no laptop, no signal required.",
-    whereIsIt: "Not confirmed against your actual assembled boat yet (you don't have it in hand), but the official wiring diagram shows the MIL wired together with the tachometer and hour meter as one combo connector — that strongly suggests it's part of a gauge on your control handle/console, not mounted on the engine itself like the sensors are. Worth a quick look once you have the boat.",
     images: [
       { file: "images/mil-flash-diagram.png", caption: "The OEM manual's own worked example: this exact blink pattern reads out as P0337." },
       { file: "images/dlc-connector-photo.png", caption: "The Data Link Connector (DLC) — the orange 6-pin plug you'd use IF you ever get access to a scan tool. Not needed for the blink method above." },
