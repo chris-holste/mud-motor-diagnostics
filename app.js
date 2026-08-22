@@ -183,7 +183,6 @@
     refGrid.appendChild(cardBtn("🔌", "Wiring Reference", "ECM J1/J2 pinouts", drawWiring));
     refGrid.appendChild(cardBtn("⚠️", "Known Issues", "Field-reported failures", drawFieldNotesList));
     refGrid.appendChild(cardBtn("📐", "Specs Cheat Sheet", "Voltage, pressure, etc.", drawSpecs));
-    refGrid.appendChild(cardBtn("📓", "My Notes", "Your own field notes", drawMyNotes));
     refGrid.appendChild(cardBtn("📖", "Full Manuals (PDF)", "Bundled, works offline", drawManuals));
 
     const toolsGrid = root.querySelector("#toolsGrid");
