@@ -1,0 +1,17 @@
+{
+  "name": "Mud Motor Doc — Vanguard 40 EFI",
+  "short_name": "Mud Motor",
+  "description": "Offline diagnostic guide for the Briggs & Stratton Vanguard 40 EFI mud motor (Mud Buddy HDR 4000R).",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1c150c",
+  "theme_color": "#d8531b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
