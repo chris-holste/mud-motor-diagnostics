@@ -645,7 +645,7 @@ const CONTENT = {
       source: "manual",
       start: "s1",
       steps: {
-        s1: { text: "Read trouble codes (MIL blink method or scan tool). Are any DTCs stored?", yes: { action: "dtc" }, no: { next: "s2" } },
+        s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check: battery cables, all visible EFI wiring/connectors, fuel lines for obvious damage, kinks, corrosion, or disconnects. Find a problem?", yes: { action: "repair:Fix whatever you found — loose/corroded connector, chafed wire, disconnected plug — then retry start." }, no: { next: "s3" } },
         s3: { text: `Check the battery: look for loose or corroded terminals, and verify battery voltage is ${"12.2–13.5 V"}. Problem found?`, yes: { action: "repair:Clean/tighten terminals, or charge/jump/replace the battery. This is the #1 cause of a true no-crank." }, no: { next: "s4" } },
         s4: { text: "Verify the PTO clutch (prop clutch/gear engagement) is NOT engaged — many of these motors have a safety interlock that blocks the starter if it thinks the prop is engaged. Is it engaged?", yes: { action: "repair:Disengage the clutch/shift to neutral, then retry start." }, no: { next: "s5" } },
@@ -663,7 +663,7 @@ const CONTENT = {
       source: "manual",
       start: "s1",
       steps: {
-        s1: { text: "Read trouble codes (MIL blink method or scan tool). Are any DTCs stored?", yes: { action: "dtc" }, no: { next: "s2" } },
+        s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check. NOTE: listen for the fuel pump — it should prime for about 2 seconds when you turn the key ON. If it only primes for about 1/2 second, that points straight at the safety interrupt circuit. Problem found?", yes: { action: "repair:Fix what you found. If the pump only half-primes, check the kill-switch/lanyard and safety interrupt wiring." }, no: { next: "s3" } },
         s3: { text: "Verify there's actually enough fuel in the tank(s). Insufficient fuel?", yes: { action: "repair:Add fuel. (Yes, check this before anything else — it happens to everyone.)" }, no: { next: "s4" } },
         s4: { text: "Check the fuel shut-off valve, if equipped. Is it closed?", yes: { action: "repair:Open the fuel shut-off valve." }, no: { next: "s5" } },
@@ -685,7 +685,7 @@ const CONTENT = {
       source: "manual",
       start: "s1",
       steps: {
-        s1: { text: "Read trouble codes. Are any DTCs stored?", yes: { action: "dtc" }, no: { next: "s2" } },
+        s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check of wiring, connectors, and fuel lines. Problem found?", yes: { action: "repair:Fix what you found." }, no: { next: "s3" } },
         s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
         s4: { text: `Run the Fuel Rail Pressure Test (spec ${"38–43 psi"}). Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes." }, no: { next: "s5" } },
@@ -705,7 +705,7 @@ const CONTENT = {
       source: "manual",
       start: "s1",
       steps: {
-        s1: { text: "Read trouble codes. Are any DTCs stored?", yes: { action: "dtc" }, no: { next: "s2" } },
+        s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check. Problem found?", yes: { action: "repair:Fix what you found." }, no: { next: "s3" } },
         s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
         s4: { text: `Run the Fuel Rail Pressure Test (spec ${"38–43 psi"}). Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes — a weak pump often shows up as flat power under load before it ever causes a full stall." }, no: { next: "s5" } },
@@ -726,7 +726,7 @@ const CONTENT = {
       source: "manual",
       start: "s1",
       steps: {
-        s1: { text: "Read trouble codes. Are any DTCs stored?", yes: { action: "dtc" }, no: { next: "s2" } },
+        s1: { text: "Check your warning light for a stored trouble code first (tap below for how). Is one stored?", linkMil: true, yes: { action: "dtc" }, no: { next: "s2" } },
         s2: { text: "Do a careful visual check. Problem found?", yes: { action: "repair:Fix what you found." }, no: { next: "s3" } },
         s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
         s4: { text: `Run the Fuel Rail Pressure Test (spec ${"38–43 psi"}). Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes." }, no: { next: "s5" } },

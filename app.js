@@ -239,6 +239,11 @@
 
     wrap.appendChild(el(`<div class="question-card">${linkify(step.text)}</div>`));
 
+    if (step.linkMil) {
+      const howBtn = el(`<button class="pill-btn" type="button" style="margin-bottom:10px">⚠️ Check for a Warning Light →</button>`);
+      howBtn.addEventListener("click", () => push({ title: "Check for a Warning Light", draw: drawMil }));
+      wrap.appendChild(howBtn);
+    }
     if (step.linkTest) {
       const test = CONTENT.fieldTests.find((t) => t.id === step.linkTest);
       if (test) {
