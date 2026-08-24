@@ -171,7 +171,7 @@
       ["no-crank", "🔌", "Won't Crank"],
       ["cranks-no-start", "🚫", "Cranks, No Start"],
       ["hard-start", "⏱️", "Hard to Start"],
-      ["low-power", "📉", "Low Power"],
+      ["low-power", "📉", "Engine Losing Power"],
       ["hunts-surges", "〰️", "Hunts / Surges"],
     ];
     trees.forEach(([id, icon, label]) => {

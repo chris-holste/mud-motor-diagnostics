@@ -753,7 +753,7 @@ const CONTENT = {
     },
 
     "low-power": {
-      title: "Engine Power Output Low",
+      title: "Engine Losing Power",
       subtitle: "Runs, but noticeably down on power",
       source: "manual",
       start: "s1",
