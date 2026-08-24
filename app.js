@@ -177,7 +177,7 @@
     trees.forEach(([id, icon, label]) => {
       symptomGrid.appendChild(cardBtn(icon, label, "", () => openTree(id), true));
     });
-    symptomGrid.appendChild(cardBtn("⚙️", "Won't Shift / Trim Issues", "No forward/reverse, drops out of gear — Mud Buddy's own guide", drawRigTroubleshootingList));
+    symptomGrid.appendChild(cardBtn("⚙️", "Won't Shift / Trim Issues", "No forward/reverse, drops out of gear", drawRigTroubleshootingList));
     symptomGrid.appendChild(cardBtn("🧩", "Drivetrain / Prop", "Gear-down, clutch, thrust", drawDrivetrain));
 
     const refGrid = root.querySelector("#refGrid");
@@ -689,10 +689,10 @@
   }
 
   // ==========================================================================
-  // RIG-SPECIFIC TROUBLESHOOTING (Mud Buddy owner's manual)
+  // RIG-SPECIFIC SHIFT/TRIM TROUBLESHOOTING
   // ==========================================================================
   function drawRigTroubleshootingList(root) {
-    root.appendChild(el(`<p class="home-lead">Straight from Mud Buddy's own owner's manual — shift, trim, and drops-out-of-gear problems the engine manual doesn't cover. ${sourceBadge("rig")}</p>`));
+    root.appendChild(el(`<p class="home-lead">Shift, trim, and drops-out-of-gear problems — the engine manual doesn't cover any of this, since it's specific to the boat's own shift/trim wiring.</p>`));
     CONTENT.rigTroubleshooting.forEach((r) => {
       const item = el(`<button class="list-item" type="button"><div class="li-title">${esc(r.title)}</div></button>`);
       item.addEventListener("click", () => push({ title: r.title, draw: (root2) => drawRigTroubleshootingDetail(root2, r) }));
@@ -703,7 +703,6 @@
   function drawRigTroubleshootingDetail(root, r) {
     root.appendChild(el(`
       <div class="detail-block">
-        <p>${sourceBadge("rig")}</p>
         <ol>${r.checks.map((c) => `<li>${esc(c)}</li>`).join("")}</ol>
       </div>
     `));

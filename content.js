@@ -296,24 +296,10 @@ const CONTENT = {
   },
 
   // ------------------------------------------------------------------------
-  // Rig-specific troubleshooting — transcribed directly from Mud Buddy's own
-  // HD/HDR owner's manual troubleshooting table. This is the manufacturer's
-  // own guidance for THIS boat, not the generic engine manual — covers shift,
-  // trim, and drops-out-of-gear problems the Briggs manual doesn't address.
+  // Rig-specific shift/trim troubleshooting — covers shift, trim, and
+  // drops-out-of-gear problems the generic engine manual doesn't address.
   // ------------------------------------------------------------------------
   rigTroubleshooting: [
-    {
-      id: "wont-start-rig",
-      title: "Engine Won't Start (rig-level checks)",
-      checks: [
-        "Check the safety lanyard is properly seated.",
-        "Confirm the shift switch is in Neutral — the engine won't crank if it isn't.",
-        "Check the main circuit breaker at the battery (120A).",
-        "Check battery voltage: 12.2-13.5V.",
-        "Turn the key to run and listen for the fuel pump to initialize (prime) — if you hear it, the ECU is getting power.",
-        "Does the MIL light turn on when the key is turned to run? If not, check power to the MIL/ECM circuit.",
-      ],
-    },
     {
       id: "shifts-one-way",
       title: "Shifts Forward But Not Reverse (or vice versa)",
@@ -321,17 +307,6 @@ const CONTENT = {
         "Check electrical ground connections coming from the belt housing — look for a loose or corroded connection at the grounding lug. (If it engages in one direction but not the other, the positive circuit is already known good at least up to the shift switch — so suspect the ground first.)",
         "Check the electrical connector behind the handle: position 10 (Red) is Forward, position 11 (Gray) is Reverse. Look for contacts not fully seated, or broken/damaged wires.",
         "Check the electrical 2-pin connector inside the belt housing — confirm contacts are fully seated with no broken/damaged wires.",
-      ],
-    },
-    {
-      id: "rough-idle-rig",
-      title: "Starts, But Rough Idle/Run",
-      checks: [
-        "Turn key to ON — does the lift pump sound loud/strong? If it sounds weak, check fuel delivery (see Fuel Pump field notes).",
-        "Check the air filter and fuel filter are in good shape with no obstructions.",
-        "Check connections at the battery, the 120A breaker, and all grounds.",
-        "Double check the gap between the CKP sensor and flywheel, reset if necessary.",
-        "Try an ECM memory reset (see Clear Trouble Codes).",
       ],
     },
     {
@@ -872,7 +847,8 @@ const CONTENT = {
       title: "Crankshaft Position (CKP) Sensor",
       priority: "medium",
       body: [
-        "Reported as a cause of cranking/no-start issues on Vanguard EFI engines in other applications (mowers). Worth checking the CKP connector and sensor air gap if you get a P0336/P0337 or an unexplained crank-but-no-start with good fuel pressure and spark.",
+        "Reported as a cause of cranking/no-start issues on Vanguard EFI engines in other applications (mowers). Worth checking the CKP connector and sensor air gap if you get a P0336/P0337 or an unexplained crank-but-no-start with good fuel pressure and spark, and also worth a look if the engine starts but idles rough — a gap that's off can cause a noisy/inconsistent signal without fully failing.",
+        "Spec: the gap between the CKP sensor and the flywheel tooth should be 0.030 in (0.76 mm). Loosen the two sensor bracket screws, set the gap, and re-tighten.",
       ],
       relatedTests: [],
       relatedDtcs: ["P0336", "P0337"],
