@@ -70,7 +70,7 @@
     return `<span class="badge ${p}">${p}</span>`;
   }
   function sourceBadge(s) {
-    if (s === "manual") return `<span class="badge manual">OEM engine manual</span>`;
+    if (s === "manual") return `<span class="badge manual">Official engine manual</span>`;
     if (s === "rig") return `<span class="badge rig">Mud Buddy owner's manual</span>`;
     if (s === "field") return `<span class="badge field">field-reported</span>`;
     return "";

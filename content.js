@@ -5,7 +5,7 @@
    Motor:  Same powerhead used across Mud Buddy AND Gator Tail rigs — this
            content applies to both brands regardless of gear-down/direct
            drive or drive length, since none of that changes the engine.
-   Coverage confirmed directly (compared both OEM manuals line for line):
+   Coverage confirmed directly (compared both official manuals line for line):
    - 37 EFI and 40 EFI are the SAME "Vanguard 810 EFI Big Block EFI" engine —
      just different horsepower tunes of the identical block/ECM/DTC set.
      Everything in this app applies to both.
@@ -23,7 +23,7 @@
      trim, and belt-housing wiring that the engine manual doesn't touch.
    - "field" tagged content is community/forum-reported (Southern Airboat,
      Michigan Sportsman, Lawnsite, etc.) — real-world failure patterns that
-     are NOT in any OEM manual. Treat as "worth checking first" hints, not
+     are NOT in any official manual. Treat as "worth checking first" hints, not
      verified OEM procedures.
    - Confirmed from the manuals: this engine is Briggs Model 610000, marked
      "M61 Marine" in the component diagrams — the same physical layout shown
@@ -59,7 +59,7 @@ const CONTENT = {
     { name: "Spare fuses & fuel pump relay (same spec)", why: "Cheapest, most common failure points. Swap-testing a relay takes 10 seconds and rules out a huge category of no-start/stall problems.", required: true },
     { name: "Electrical contact cleaner + dielectric grease", why: "Corrosion at connectors (salt/marsh spray) is a very common field failure. Clean, dry, and protect after inspecting.", required: false },
     { name: "Spare spark plugs (gapped, correct type)", why: "Fouled/worn plugs are a common low-power/hard-start cause.", required: false },
-    { name: "Fire extinguisher (dry chemical) + shop towels", why: "Required by the OEM manual any time you relieve fuel system pressure. Fuel rail is HIGH PRESSURE — treat it with respect.", required: true },
+    { name: "Fire extinguisher (dry chemical) + shop towels", why: "Required by the official manual any time you relieve fuel system pressure. Fuel rail is HIGH PRESSURE — treat it with respect.", required: true },
     { name: "Flashlight / headlamp", why: "You will be doing this at a bad time, in bad light.", required: false },
     { name: "DIY fused jumper wire (build it — see DIY Tools)", why: "Bypass-test a component (like the fuel pump) directly off the battery to tell in seconds whether the part or its wiring/relay is at fault. The single most useful homemade tool for chasing electrical gremlins.", required: true },
     { name: "Inline blade-fuse holder + assorted fuses", why: "For building the fused jumper, and as spares for the boat's own fuse panel.", required: true },
@@ -120,9 +120,9 @@ const CONTENT = {
     title: "Check for a Warning Light",
     subtitle: "Start here first if something's wrong — fastest way to find out exactly what, no tools needed.",
     source: "manual",
-    whatIsThis: "Your motor has a small warning light — Briggs calls it the \"MIL\" (Malfunction Indicator Lamp), which is the exact same idea as the check-engine light in a car. When something's wrong, the engine's onboard computer turns that light on and remembers a short code describing the problem. You can make the light blink that code back out to you, using nothing but the ignition key — no scan tool, no laptop, no signal required.",
+    whatIsThis: "Your motor has a small warning light — Briggs calls it the \"MIL\" (Malfunction Indicator Lamp), which is the exact same idea as the check-engine light in a car. When something's wrong, the engine's onboard computer — you'll see it called the \"ECM\" (Engine Control Module) throughout this app, that's just its name — turns that light on and remembers a short code describing the problem. You can make the light blink that code back out to you, using nothing but the ignition key — no scan tool, no laptop, no signal required.",
     images: [
-      { file: "images/mil-flash-diagram.png", caption: "The OEM manual's own worked example: this exact blink pattern reads out as P0337." },
+      { file: "images/mil-flash-diagram.png", caption: "The official manual's own worked example: this exact blink pattern reads out as P0337." },
       { file: "images/dlc-connector-photo.png", caption: "The Data Link Connector (DLC) — the orange 6-pin plug you'd use IF you ever get access to a scan tool. Not needed for the blink method above." },
     ],
     intro: "This is the single most useful no-signal diagnostic trick this engine has. Mud Buddy's own owner's manual describes the same trick in simpler terms, quoted below alongside Briggs' more precise version — they agree, just worded differently.",
@@ -200,7 +200,7 @@ const CONTENT = {
   // ECM Connector pinouts (manual, Section 4 — ECM Connector Symptoms)
   // ------------------------------------------------------------------------
   wiring: {
-    intro: "Use these tables with a DVOM and back-probe pins (never force a probe into the front of a connector — you'll deform the terminal). Compare live readings against the specs above. This is the manual's last-resort table when a symptom doesn't point to one clean cause.",
+    intro: "Use these tables with a multimeter and back-probe pins (never force a probe into the front of a connector — you'll deform the terminal). Compare live readings against the specs above. This is the manual's last-resort table when a symptom doesn't point to one clean cause.",
     connectors: [
       {
         name: "ECM Connector J1 (Grey)",
@@ -264,8 +264,8 @@ const CONTENT = {
         file: "images/component-locations-marine-610000.png",
         caption: "Same information, laid over an actual engine photo/drawing — Models 540000/610000 (your engine — Marine).",
         callouts: [
-          "Fuse/Relay Block sits right at the top of the engine, immediately next to the ECM — they share a common mounting bracket.",
-          "ECM is top-center, the block with the wire connectors (J1/J2) plugged into it.",
+          "Fuse/Relay Block sits right at the top of the engine, immediately next to the ECM (Engine Control Module — the engine's onboard computer) — they share a common mounting bracket.",
+          "ECM is top-center, the black box with the wire connectors (J1/J2) plugged into it.",
           "DLC (diagnostic port, for a scan tool) is lower-right, near the CKP sensor by the flywheel end.",
           "CKP (crank position) sensor is bottom-right, close to the flywheel.",
           "MAP/MAT sensor is top-left area, right next to the fuse/relay block.",
@@ -551,7 +551,7 @@ const CONTENT = {
       icon: "🔧",
       why: "Lets you power a component — most usefully the fuel pump — directly from the battery, bypassing its relay/switch/wiring, to find out in seconds whether the component itself is bad or the fault is upstream. This is the single most useful 5-minute DIY tool for chasing an electrical gremlin on the water.",
       materials: [
-        "About 3 ft of 16-18 AWG stranded wire",
+        "About 3 ft of 16-18 AWG stranded wire (AWG = American Wire Gauge, the standard wire-thickness sizing — counterintuitively, a smaller number means thicker wire. Any auto parts store labels wire this way, and 16-18 is a normal size to ask for.)",
         "2 automotive alligator clips (crimp-on or solder-on)",
         "1 inline blade-fuse holder + a fuse — match the amp rating to the circuit you're testing (check the fuse already protecting that circuit, don't exceed it)",
         "Wire crimpers or a soldering iron + heat shrink/electrical tape",
@@ -630,7 +630,7 @@ const CONTENT = {
   // Field Wiring Repair — how to actually fix a wire on the water once
   // you've found the fault. "field"-sourced practical technique, not OEM
   // procedure. Deliberately steers away from piercing/vampire taps, since
-  // the OEM manual explicitly warns that punctured insulation lets water in
+  // the official manual explicitly warns that punctured insulation lets water in
   // and causes exactly the corrosion failures this whole app is full of.
   // ------------------------------------------------------------------------
   wireRepair: {
@@ -647,7 +647,7 @@ const CONTENT = {
       "Dielectric grease",
       "Multimeter, to confirm continuity after the repair",
     ],
-    caution: "Never puncture wire insulation to \"tap\" a test point (vampire/scotch-lock taps included) — the OEM manual calls this out specifically because the tiny holes let water in, which corrodes the wire from the inside out and causes exactly the intermittent failures covered in Known Issues. Back-probe connectors to test, and only cut wire when you're doing a real splice you're going to seal properly.",
+    caution: "Never puncture wire insulation to \"tap\" a test point (vampire/scotch-lock taps included) — the official manual calls this out specifically because the tiny holes let water in, which corrodes the wire from the inside out and causes exactly the intermittent failures covered in Known Issues. Back-probe connectors to test, and only cut wire when you're doing a real splice you're going to seal properly.",
     cases: [
       {
         title: "Splicing a broken or chafed wire",
@@ -743,7 +743,7 @@ const CONTENT = {
         s3: { text: "Check fuel tank(s), filter, lines, and pumps for dirt, water, or contamination. Problem found?", linkTest: "fuel-contamination", yes: { action: "repair:Drain/replace contaminated fuel, replace filter, clean/replace lines." }, no: { next: "s4" } },
         s4: { text: `Run the Fuel Rail Pressure Test (spec ${"38–43 psi"}). Problem found?`, linkTest: "fuel-pressure", yes: { action: "repair:See Fuel Pump field notes." }, no: { next: "s5" } },
         s5: { text: `Check the battery (terminals, voltage ${"12.2–13.5 V"}). Problem found?`, yes: { action: "repair:Clean/tighten terminals, charge or replace the battery." }, no: { next: "s6" } },
-        s6: { text: "Check for an intermittent open or short-to-ground in the MAP (manifold air pressure) sensor circuit (wiggle-test the harness while watching a DVOM on the signal wire). Problem found?", yes: { action: "repair:Repair the MAP sensor wiring/connector." }, no: { next: "s7" } },
+        s6: { text: "Check for an intermittent open or short-to-ground in the MAP (manifold air pressure) sensor circuit (wiggle-test the harness while watching a multimeter on the signal wire). Problem found?", yes: { action: "repair:Repair the MAP sensor wiring/connector." }, no: { next: "s7" } },
         s7: { text: "Check TPS (Throttle Position Sensor — tells the ECM how far open the throttle is) operation, and verify the throttle linkage isn't sticking, binding, or worn (which can cause high TPS voltage). Problem found?", yes: { action: "repair:Free up/lubricate the linkage, or repair the TPS/connector." }, no: { next: "s8" } },
         s8: { text: "Check IAC (idle air control) operation, if equipped. Problem found?", yes: { action: "repair:Clean or replace the IAC valve/connector." }, no: { next: "s9" } },
         s9: { text: "Check basic engine mechanicals (compression, head gasket, valves). Problem found?", yes: { action: "repair:Mechanical repair — not a dockside fix, get it to a shop." }, no: { next: "s10" } },
@@ -786,7 +786,7 @@ const CONTENT = {
         s5: { text: `Check the battery (terminals, voltage ${"12.2–13.5 V"}). Problem found?`, yes: { action: "repair:Clean/tighten terminals, charge or replace the battery." }, no: { next: "s6" } },
         s6: { text: "Verify crankcase oil is at the correct level. Low?", yes: { action: "repair:Add crankcase oil to spec." }, no: { next: "s7" } },
         s7: { text: "Verify air filter element is clean and dry. Dirty?", yes: { action: "repair:Replace/clean the air filter element." }, no: { next: "s8" } },
-        s8: { text: "Check for an intermittent open or short-to-ground in the MAP (manifold air pressure) sensor circuit (wiggle-test the harness while watching a DVOM on the signal wire). Problem found?", yes: { action: "repair:Repair the MAP sensor wiring/connector." }, no: { next: "s9" } },
+        s8: { text: "Check for an intermittent open or short-to-ground in the MAP (manifold air pressure) sensor circuit (wiggle-test the harness while watching a multimeter on the signal wire). Problem found?", yes: { action: "repair:Repair the MAP sensor wiring/connector." }, no: { next: "s9" } },
         s9: { text: "Check TPS (Throttle Position Sensor — tells the ECM how far open the throttle is) operation, and verify the throttle linkage isn't sticking, binding, or worn (which can cause an unstable TPS signal). Problem found?", yes: { action: "repair:Free up/lubricate the linkage, or repair the TPS/connector." }, no: { next: "s10" } },
         s10: { text: "Check IAC (idle air control) operation, if equipped — this is what actually stabilizes idle on this ECM-governed engine. Problem found?", yes: { action: "repair:Clean or replace the IAC valve/connector." }, no: { next: "s11" } },
         s11: { text: "Repeat visual check and re-check all electrical connections. Problem found?", yes: { action: "repair:Fix the connection you found." }, no: { next: "s12" } },
@@ -796,7 +796,7 @@ const CONTENT = {
   },
 
   // ------------------------------------------------------------------------
-  // Field-reported common failures (NOT from the OEM manual — labeled as such)
+  // Field-reported common failures (NOT from the official manual — labeled as such)
   // ------------------------------------------------------------------------
   fieldNotes: [
     {
@@ -836,7 +836,7 @@ const CONTENT = {
         "Look for green or white powdery deposits inside connector shells, especially at ECM connectors (J1/J2), ground points, and the fuel pump module connector.",
         "A bent or backed-out pin looks fine visually but won't make good contact — check that every pin is fully seated and straight.",
         "Clean with electrical contact cleaner, not water or WD-40. Re-seat, and consider dielectric grease on connectors you re-open, to slow future corrosion.",
-        "If you have an intermittent problem with NO stored DTC, the manual explicitly says: don't bother with the DTC tables, the fault has to be actively present. Wiggle-test connectors with a DVOM connected while the engine runs, watching for a voltage glitch when you flex a specific harness section.",
+        "If you have an intermittent problem with NO stored DTC, the manual explicitly says: don't bother with the DTC tables, the fault has to be actively present. Wiggle-test connectors with a multimeter connected while the engine runs, watching for a voltage glitch when you flex a specific harness section.",
       ],
       relatedTests: ["ecm-power-ground"],
       relatedDtcs: [],
