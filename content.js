@@ -17,10 +17,11 @@
      mudbuddy.com/wp-content/uploads/2024/02/40-efi-diagnostics-and-repair-manual.pdf
      This covers the ENGINE only (the 40 HP Vanguard powerhead itself).
    - "rig" tagged content is transcribed from Mud Buddy's own HD/HDR Owner's
-     Manual (2024/25 ed.) and their official HDR EFI 2019 harness wiring
-     diagram — mudbuddy.com/resources/manuals/ and /resources/wire-diagrams/.
-     This covers the BOAT/RIG side: battery, breakers, key switch, shift,
-     trim, and belt-housing wiring that the engine manual doesn't touch.
+     Manual (2024/25 ed.), their official HDR EFI 2019 harness wiring
+     diagram, and their published FAQ page — mudbuddy.com/resources/manuals/,
+     /resources/wire-diagrams/, and /resources/faqs/. This covers the
+     BOAT/RIG side: battery, breakers, key switch, shift, trim, belt-housing
+     wiring, and general maintenance specs that the engine manual doesn't touch.
    - "field" tagged content is community/forum-reported (Southern Airboat,
      Michigan Sportsman, Lawnsite, etc.) — real-world failure patterns that
      are NOT in any official manual. Treat as "worth checking first" hints, not
@@ -46,6 +47,8 @@ const CONTENT = {
     onPlaneRpmSpec: "4100–4300 RPM on plane (per Mud Buddy owner's manual)",
     batteryPhysicalSpec: "Group 24 or larger battery, 550+ cranking amps. Motor ships with 9 ft of 4-gauge wire and a 120A main breaker. If you relocate the battery to the front of the boat, use 4-gauge cable for the run.",
     shiftCurrentSpec: "Normal current draw at the 20A accessory breaker: ~6A in forward, ~10A in reverse. Breaker self-resets when it cools.",
+    idleRpmSpec: "1250–1450 RPM at idle for stock EFI motors (per Mud Buddy's official FAQ).",
+    oilSpec: "10W-30 automotive, synthetic, or blend oil. Change every 25–50 hours of use; do the first change at 20 hours (break-in). (Per Mud Buddy's official FAQ.)",
   },
 
   // ------------------------------------------------------------------------
@@ -898,6 +901,7 @@ const CONTENT = {
         title: "Excess vibration",
         checks: [
           "Prop damage/imbalance is the most common cause — inspect blades closely, even small dings can cause noticeable vibration at speed.",
+          "Mud Buddy's own guidance is blunt about this: a worn, bent, or out-of-balance prop is \"the one most single thing\" that shakes a motor to pieces, and they call out running above 2500 RPM on a bad prop as especially damaging — which covers nearly your whole operating range, since on-plane is 4100–4300 RPM. Replace a suspect prop before your next run rather than after.",
           "Check drive shaft straightness and motor mount bolts for looseness — mounts backing out from constant vibration is common on hard-running rigs.",
         ],
       },

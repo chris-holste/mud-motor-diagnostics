@@ -71,7 +71,7 @@
   }
   function sourceBadge(s) {
     if (s === "manual") return `<span class="badge manual">Official engine manual</span>`;
-    if (s === "rig") return `<span class="badge rig">Mud Buddy owner's manual</span>`;
+    if (s === "rig") return `<span class="badge rig">Mud Buddy (official)</span>`;
     if (s === "field") return `<span class="badge field">field-reported</span>`;
     return "";
   }
@@ -817,6 +817,10 @@
         <p class="spec-line">${esc(m.batteryPhysicalSpec)}</p>
         <h3>Shift circuit current draw</h3>
         <p class="spec-line">${esc(m.shiftCurrentSpec)}</p>
+        <h3>Idle RPM</h3>
+        <p class="spec-line">${esc(m.idleRpmSpec)}</p>
+        <h3>Oil</h3>
+        <p class="spec-line">${esc(m.oilSpec)}</p>
       </div>
     `));
     root.appendChild(el(`<p class="footer-note">${esc(CONTENT.contextNote)}</p>`));
