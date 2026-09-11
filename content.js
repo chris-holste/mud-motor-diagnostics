@@ -1,10 +1,11 @@
 /* ==========================================================================
    Vanguard EFI Mud Motor Diagnostics — Content Data
    Engine: Briggs & Stratton Vanguard 810 EFI "Big Block"
-           as installed on the 2026 Mud Buddy HDR 40 EFI
-   Motor:  Same powerhead used across Mud Buddy AND Gator Tail rigs — this
-           content applies to both brands regardless of gear-down/direct
-           drive or drive length, since none of that changes the engine.
+           as installed on a 2026 40 EFI mud motor rig
+   Motor:  Same powerhead used across multiple mud motor brands/rigs — this
+           content applies regardless of brand, gear-down/direct drive
+           configuration, or drive length, since none of that changes the
+           engine itself.
    Coverage confirmed directly (compared both official manuals line for line):
    - 37 EFI and 40 EFI are the SAME "Vanguard 810 EFI Big Block EFI" engine —
      just different horsepower tunes of the identical block/ECM/DTC set.
@@ -13,13 +14,11 @@
    SOURCING:
    - "manual" tagged content is transcribed from Briggs & Stratton's official
      "Electronic Fuel Injection Service & Diagnostics — Vanguard 810 EFI /
-     Big Block EFI" repair manual, published by Mud Buddy at
-     mudbuddy.com/wp-content/uploads/2024/02/40-efi-diagnostics-and-repair-manual.pdf
-     This covers the ENGINE only (the 40 HP Vanguard powerhead itself).
-   - "rig" tagged content is transcribed from Mud Buddy's own HD/HDR Owner's
-     Manual (2024/25 ed.), their official HDR EFI 2019 harness wiring
-     diagram, and their published FAQ page — mudbuddy.com/resources/manuals/,
-     /resources/wire-diagrams/, and /resources/faqs/. This covers the
+     Big Block EFI" repair manual. This covers the ENGINE only (the 40 HP
+     Vanguard powerhead itself).
+   - "rig" tagged content is transcribed from the rig manufacturer's own
+     HD/HDR Owner's Manual (2024/25 ed.), their official HDR EFI 2019
+     harness wiring diagram, and their published FAQ page. This covers the
      BOAT/RIG side: battery, breakers, key switch, shift, trim, belt-housing
      wiring, and general maintenance specs that the engine manual doesn't touch.
    - "field" tagged content is community/forum-reported (Southern Airboat,
@@ -44,11 +43,11 @@ const CONTENT = {
     batteryVoltageSpec: "12.2–13.5 V DC (engine off) / 12.2–14.5 V DC (key on, at ECM)",
     fuelPumpPrimeSpec: "Pump should prime ~2 seconds when ECM powers up. If it only primes ~0.5 sec, suspect the Safety (interrupt) Circuit.",
     ecmGroundSpec: "1.0 ohm or less, ECM ground pin (J2-02) to known good ground",
-    onPlaneRpmSpec: "4100–4300 RPM on plane (per Mud Buddy owner's manual)",
+    onPlaneRpmSpec: "4100–4300 RPM on plane (per the rig owner's manual)",
     batteryPhysicalSpec: "Group 24 or larger battery, 550+ cranking amps. Motor ships with 9 ft of 4-gauge wire and a 120A main breaker. If you relocate the battery to the front of the boat, use 4-gauge cable for the run.",
     shiftCurrentSpec: "Normal current draw at the 20A accessory breaker: ~6A in forward, ~10A in reverse. Breaker self-resets when it cools.",
-    idleRpmSpec: "1250–1450 RPM at idle for stock EFI motors (per Mud Buddy's official FAQ).",
-    oilSpec: "10W-30 automotive, synthetic, or blend oil. Change every 25–50 hours of use; do the first change at 20 hours (break-in). (Per Mud Buddy's official FAQ.)",
+    idleRpmSpec: "1250–1450 RPM at idle for stock EFI motors (per the rig manufacturer's official FAQ).",
+    oilSpec: "10W-30 automotive, synthetic, or blend oil. Change every 25–50 hours of use; do the first change at 20 hours (break-in). (Per the rig manufacturer's official FAQ.)",
   },
 
   // ------------------------------------------------------------------------
@@ -128,15 +127,15 @@ const CONTENT = {
       { file: "images/mil-flash-diagram.png", caption: "The official manual's own worked example: this exact blink pattern reads out as P0337." },
       { file: "images/dlc-connector-photo.png", caption: "The Data Link Connector (DLC) — the orange 6-pin plug you'd use IF you ever get access to a scan tool. Not needed for the blink method above." },
     ],
-    intro: "This is the single most useful no-signal diagnostic trick this engine has. Mud Buddy's own owner's manual describes the same trick in simpler terms, quoted below alongside Briggs' more precise version — they agree, just worded differently.",
+    intro: "This is the single most useful no-signal diagnostic trick this engine has. The rig's own owner's manual describes the same trick in simpler terms, quoted below alongside Briggs' more precise version — they agree, just worded differently.",
     prereqs: [
       "Battery voltage must be above 12V.",
       "You need to watch the warning light closely and count flashes.",
     ],
-    quickVersion: "Mud Buddy's version (owner's manual): Turn the key from OFF to RUN 5 times within 5 seconds, ending with the key in the RUN position. The MIL then blinks out each stored code, with \"0\" shown as 10 quick blinks. Code \"061\" marks the end of the list — if that's the only thing that flashes, there are no active faults.",
+    quickVersion: "The rig owner's manual's version: Turn the key from OFF to RUN 5 times within 5 seconds, ending with the key in the RUN position. The MIL then blinks out each stored code, with \"0\" shown as 10 quick blinks. Code \"061\" marks the end of the list — if that's the only thing that flashes, there are no active faults.",
     steps: [
       "Turn ignition key OFF for 10 seconds.",
-      "Cycle the key ON‑OFF‑ON‑OFF‑ON, but do NOT start the engine. No more than 2.5 seconds between each ON/OFF click or the routine aborts and you must start over. (This is the same physical action as Mud Buddy's \"5 times within 5 seconds\" — just described more precisely.)",
+      "Cycle the key ON‑OFF‑ON‑OFF‑ON, but do NOT start the engine. No more than 2.5 seconds between each ON/OFF click or the routine aborts and you must start over. (This is the same physical action as the rig manual's \"5 times within 5 seconds\" — just described more precisely.)",
       "Done correctly, the MIL begins flashing 4 digits, one digit at a time, with a 1-second pause between digits.",
       "The first digit is always 0 — shown as a fast series of ~10 flashes before the first pause. Ignore it; every code starts with P0.",
       "Count the flashes after pause 1 = 2nd digit. Count flashes after pause 2 = 3rd digit. Count flashes after pause 3 = 4th digit.",
@@ -186,7 +185,7 @@ const CONTENT = {
     { code: "P0174", title: "Power Enrichment (PE) — Lean Fuel Condition", note: "Often a fuel delivery issue (low pressure/weak lift pump — see fuel pump field notes) or an unmetered air leak at the throttle body/intake.", priority: "high" },
     { code: "P0201", title: "Cylinder 1 Fuel Injector Fault", note: "Check injector connector and wiring first — often cheaper than the injector itself.", priority: "medium" },
     { code: "P0202", title: "Cylinder 2 Fuel Injector Fault", note: "Check injector connector and wiring first.", priority: "medium" },
-    { code: "P0230", altCode: "P0231 (per Mud Buddy owner's manual)", title: "Fuel Pump Relay Fault — Low or Open Circuit", note: "★ Matches the #1 field-reported failure on these motors (see Fuel Pump field notes). Source conflict: Briggs' official manual lists this as P0230; Mud Buddy's own owner's manual lists the same fault as P0231. If your MIL blinks either one, treat it the same — check the fuel pump relay and fuel pump module wiring/connector before condemning the pump.", priority: "high", relatedTest: "fuel-pressure" },
+    { code: "P0230", altCode: "P0231 (per the rig owner's manual)", title: "Fuel Pump Relay Fault — Low or Open Circuit", note: "★ Matches the #1 field-reported failure on these motors (see Fuel Pump field notes). Source conflict: Briggs' official engine manual lists this as P0230; the rig owner's manual lists the same fault as P0231. If your MIL blinks either one, treat it the same — check the fuel pump relay and fuel pump module wiring/connector before condemning the pump.", priority: "high", relatedTest: "fuel-pressure" },
     { code: "P0232", title: "Fuel Pump Relay Fault — High Voltage", note: "★ Same circuit as P0230/P0231, opposite fault direction. Both manuals agree on this code number.", priority: "high", relatedTest: "fuel-pressure" },
     { code: "P0336", title: "Crankshaft Position (CKP) Sensor — Signal Noisy", note: "Intermittent — check connector and wiring routing near the flywheel for chafing.", priority: "medium" },
     { code: "P0337", title: "Crankshaft Position (CKP) Sensor — Signal Absent", note: "Classic no-start / no-crank-signal code. Check sensor air gap and connector.", priority: "high" },
@@ -196,7 +195,7 @@ const CONTENT = {
     { code: "P0562", title: "System Voltage Low", note: "Check battery, charging system, and — very common on marsh/marine rigs — vibration-loosened battery or ground connections. Also check the 120A main breaker at the battery (see Component Locations).", priority: "high", relatedTest: "ecm-power-ground" },
     { code: "P0563", title: "System Voltage High", note: "Charging system / regulator issue.", priority: "medium", relatedTest: "ecm-power-ground" },
     { code: "P0650", title: "MIL Circuit Malfunction", note: "The check-light circuit itself has a fault — ironic, but check MIL wiring/bulb.", priority: "low" },
-    { code: "P1500", title: "Safety Interrupt Sensor Malfunction", note: "★ Not in the Briggs engine manual — this is Mud Buddy's own rig-level code for the neutral/safety-lanyard interlock system. If your engine won't crank, check this before anything else: confirm the shift is in Neutral and the safety lanyard is properly seated (see Won't Crank).", priority: "high" },
+    { code: "P1500", title: "Safety Interrupt Sensor Malfunction", note: "★ Not in the Briggs engine manual — this is the rig manufacturer's own rig-level code for the neutral/safety-lanyard interlock system. If your engine won't crank, check this before anything else: confirm the shift is in Neutral and the safety lanyard is properly seated (see Won't Crank).", priority: "high" },
   ],
 
   // ------------------------------------------------------------------------
@@ -279,21 +278,21 @@ const CONTENT = {
   },
 
   // ------------------------------------------------------------------------
-  // Power Path — "walk from the battery." Sourced from Mud Buddy's own HDR
-  // EFI harness diagram + HD/HDR owner's manual (rig-level, not engine).
+  // Power Path — "walk from the battery." Sourced from the rig manufacturer's
+  // own HDR EFI harness diagram + HD/HDR owner's manual (rig-level, not engine).
   // ------------------------------------------------------------------------
   powerPath: {
     title: "Walk the Power From the Battery",
     source: "rig",
-    images: [{ file: "images/control-harness-diagram.png", caption: "Mud Buddy's own HDR EFI harness diagram — battery, breakers, key switch, relays, and the starter solenoid, all in one picture." }],
-    intro: "The engine manual only covers wiring on the engine itself. This is the boat/rig side — from the battery to the engine — sourced from Mud Buddy's own harness diagram and owner's manual. Use this as your map when you're tracing power with a test light or multimeter: start at the battery, work outward, find where it stops.",
+    images: [{ file: "images/control-harness-diagram.png", caption: "The rig manufacturer's own HDR EFI harness diagram — battery, breakers, key switch, relays, and the starter solenoid, all in one picture." }],
+    intro: "The engine manual only covers wiring on the engine itself. This is the boat/rig side — from the battery to the engine — sourced from the rig manufacturer's own harness diagram and owner's manual. Use this as your map when you're tracing power with a test light or multimeter: start at the battery, work outward, find where it stops.",
     hops: [
       { title: "1. Battery", detail: "Group 24 or larger, 550+ cranking amps. This is your starting point for every voltage check — battery negative is your \"known good ground\" for most tests in this app." },
       { title: "2. 120A main circuit breaker", detail: "Mounted right at/near the battery, inline on the positive cable. The motor ships with 9 ft of 4-gauge wire and this breaker as a factory-installed pair — if you relocated the battery, this is where that run starts. This is a manual-reset breaker, not a fuse — if it's tripped, it can usually be reset by hand once you've found and fixed the cause." },
       { title: "3. Key/ignition switch", detail: "Located on the front of the engine itself (not on the boat's console/handle on this rig). Power from the battery/breaker reaches here first." },
       { title: "4. 20A accessory circuit breaker", detail: "Protects the shift/forward-reverse circuit downstream of the key switch. Normal draw is ~6A in forward, ~10A in reverse — over 20A means a genuine short, under 20A but still tripping means just replace the breaker. Self-resets when it cools." },
       { title: "5. Engine-mounted Fuse/Relay Block", detail: "This is the block shown in Component Locations, up by the ECM — handles the EFI side (fuel pump relay, main power relay for the ECM itself). Different from the 20A accessory breaker above, which is a rig-level part, not engine-level." },
-      { title: "6. Grounding lug (near the belt housing)", detail: "A separate, known trouble spot per Mud Buddy's own troubleshooting guide — a loose or corroded connection here specifically causes shifting problems (forward works but not reverse, or vice versa). Worth checking any time you have an electrical-feeling fault that isn't explained by the engine-side checks." },
+      { title: "6. Grounding lug (near the belt housing)", detail: "A separate, known trouble spot per the rig owner's manual's own troubleshooting guide — a loose or corroded connection here specifically causes shifting problems (forward works but not reverse, or vice versa). Worth checking any time you have an electrical-feeling fault that isn't explained by the engine-side checks." },
       { title: "7. Everything else", detail: "ECM, relays (trim up/down, in-gear protection), starter solenoid (protected by its own 40A breaker), shift/trim actuators — all fed from the paths above. If you've confirmed good voltage through steps 1-4 and still have a problem, it's isolated to one of these end components or their specific wiring." },
     ],
   },
@@ -460,7 +459,7 @@ const CONTENT = {
   electricalTriage: {
     title: "5-Minute Electrical Triage",
     source: "field",
-    intro: "Most of the no-start / stalls-randomly / dies-under-load complaints on this powerhead family (Mud Buddy and Gator Tail both) turn out to be electrical — a fuse, a relay, a corroded ground or connector — not the fuel system or the engine itself. Before you work through the full symptom checklists, run this order with just a multimeter and whatever spares are in your bag. It catches the majority of on-the-water failures fast.",
+    intro: "Most of the no-start / stalls-randomly / dies-under-load complaints on this powerhead family (regardless of rig brand) turn out to be electrical — a fuse, a relay, a corroded ground or connector — not the fuel system or the engine itself. Before you work through the full symptom checklists, run this order with just a multimeter and whatever spares are in your bag. It catches the majority of on-the-water failures fast.",
     order: [
       {
         title: "1. Fuses",
@@ -863,7 +862,7 @@ const CONTENT = {
   // meant to be filled in with your own field experience via My Notes.
   // ------------------------------------------------------------------------
   drivetrain: {
-    intro: "The Briggs EFI manual only covers the engine (powerhead). The gear-down drive, clutch, and prop are Mud Buddy's own mechanical design. The notes below are general surface-drive/gear-down mud motor knowledge, not an OEM Mud Buddy procedure.",
+    intro: "The Briggs EFI manual only covers the engine (powerhead). The gear-down drive, clutch, and prop are the rig manufacturer's own mechanical design. The notes below are general surface-drive/gear-down mud motor knowledge, not an OEM procedure from any specific rig manufacturer.",
     topics: [
       {
         title: "Engine runs fine, but little or no thrust / prop doesn't spin",
@@ -901,7 +900,7 @@ const CONTENT = {
         title: "Excess vibration",
         checks: [
           "Prop damage/imbalance is the most common cause — inspect blades closely, even small dings can cause noticeable vibration at speed.",
-          "Mud Buddy's own guidance is blunt about this: a worn, bent, or out-of-balance prop is \"the one most single thing\" that shakes a motor to pieces, and they call out running above 2500 RPM on a bad prop as especially damaging — which covers nearly your whole operating range, since on-plane is 4100–4300 RPM. Replace a suspect prop before your next run rather than after.",
+          "The rig manufacturer's own guidance is blunt about this: a worn, bent, or out-of-balance prop is \"the one most single thing\" that shakes a motor to pieces, and they call out running above 2500 RPM on a bad prop as especially damaging — which covers nearly your whole operating range, since on-plane is 4100–4300 RPM. Replace a suspect prop before your next run rather than after.",
           "Check drive shaft straightness and motor mount bolts for looseness — mounts backing out from constant vibration is common on hard-running rigs.",
         ],
       },
@@ -911,7 +910,7 @@ const CONTENT = {
   // ------------------------------------------------------------------------
   // Multi-motor equivalence, for context
   // ------------------------------------------------------------------------
-  contextNote: "Works for Gator Tail 40 EFI motors too: this is the exact same Briggs & Stratton Vanguard 810 EFI 'Big Block' powerhead used in Gator Tail's 40 EFI long-tail mud motors, not just Mud Buddy's. All the engine content (fuel, ignition, sensors, DTCs, ECM wiring) applies directly regardless of brand. Only the drivetrain/housing differs — gear-down vs. direct drive and drive length don't change any of the engine-side troubleshooting either. Also confirmed to cover the 37 EFI tune of this same engine — checked both official manuals side by side, and they document the identical DTC list, model numbers, and ECM pinouts, just for a different horsepower calibration of the same block.",
+  contextNote: "Works across brands: this is the exact same Briggs & Stratton Vanguard 810 EFI 'Big Block' powerhead used by multiple mud motor manufacturers in their 40 EFI long-tail rigs — not tied to any single brand. All the engine content (fuel, ignition, sensors, DTCs, ECM wiring) applies directly regardless of brand. Only the drivetrain/housing differs — gear-down vs. direct drive and drive length don't change any of the engine-side troubleshooting either. Also confirmed to cover the 37 EFI tune of this same engine — checked both official manuals side by side, and they document the identical DTC list, model numbers, and ECM pinouts, just for a different horsepower calibration of the same block.",
 
   // ------------------------------------------------------------------------
   // Legal disclaimer — shown prominently on the home screen.

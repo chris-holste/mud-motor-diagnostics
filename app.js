@@ -71,7 +71,7 @@
   }
   function sourceBadge(s) {
     if (s === "manual") return `<span class="badge manual">Official engine manual</span>`;
-    if (s === "rig") return `<span class="badge rig">Mud Buddy (official)</span>`;
+    if (s === "rig") return `<span class="badge rig">Official rig manual</span>`;
     if (s === "field") return `<span class="badge field">field-reported</span>`;
     return "";
   }
@@ -894,7 +894,7 @@
     `));
     root.appendChild(el(`
       <div class="detail-block">
-        <h3>Rig manuals (Mud Buddy)</h3>
+        <h3>Rig manuals</h3>
         <a class="manual-link" href="manuals/hdr-owners-manual-2024.pdf" target="_blank" rel="noopener">📖 HD/HDR Owner's Manual (2024/25) — battery, mounting, shift/trim troubleshooting</a>
         <a class="manual-link" href="manuals/hdr-efi-2019-harness.pdf" target="_blank" rel="noopener">📖 HDR EFI Harness Wiring Diagram (2019)</a>
       </div>
